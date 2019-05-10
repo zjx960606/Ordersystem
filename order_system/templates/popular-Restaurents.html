@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+<title>{% block title %} popular-Restaurents {% endblock %}</title>
+{% block body1 %}
+<!-- header-section-ends -->
+	<!-- content-section-starts -->
+	<div class="Popular-Restaurants-content">
+		<div class="Popular-Restaurants-grids">
+			<div class="container">
+				
+				{% for i in restaurant %}
+
+				<div class="Popular-Restaurants-grid wow fadeInRight" data-wow-delay="0.4s">
+					<div class="col-md-3 restaurent-logo">
+						<img src="/static/media/{{i.imgs}}" class="img-responsive" alt="" />
+					</div>
+					<div class="col-md-2 restaurent-title">
+						<div class="logo-title">
+							<h4><a href="#">{{ i.rname }}</a></h4>
+						</div>
+						<div class="rating">
+							<span>ratings</span>
+							{% if i.rate == 5  %}
+							<a href="#"> <img src="/static/images/star2.png" class="img-responsive" alt="">{{ i.rate }}</a>
+							{% else %}
+							<a href="#"> <img src="/static/images/star1.png" class="img-responsive" alt="">{{ i.rate }}</a>
+							{% endif %}
+						</div>
+					</div>
+					<div class="col-md-7 buy">
+						<span>{{i.price}}</span>
+						<a href="{% url 'orderapp:order' %}"><input type="button" value="buy"></a>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+				{% endfor %}
+
+			</div>
+		</div>
+	</div>
+
+
+{% endblock body1 %}

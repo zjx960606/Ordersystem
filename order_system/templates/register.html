@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+<title>{% block title %} register {% endblock %}</title>
+{% block body1 %}
+<div class="main">
+	   <div class="container">
+		  <div class="register">
+			  {% if error %}
+			  <div  style=" margin: 10px 0;background: #FAE4E4;border: 1px solid #DD6F6F;-moz-border-radius: 2px; -webkit-border-radius: 2px;padding: 4px; font-size: 13px;">
+			    <strong>Errror : </strong> {{error}}
+			  </div>
+			  {% endif %}  
+			  
+		  	  <form action="{% url 'orderapp:registers' %}" method="post"> 
+			  {% csrf_token %}
+				 <div class="register-top-grid">
+					<h3>PERSONAL INFORMATION</h3>
+					 <div class="wow fadeInLeft" data-wow-delay="0.4s">
+						<span>UserName<label>*</label></span>
+						<input type="text" name="username"> 
+					 </div>
+					 <div class="wow fadeInRight" data-wow-delay="0.4s">
+						 <span>Email Address<label>*</label></span>
+						 <input type="email" name="email"> 
+					 </div>
+					 <div class="clearfix"> </div>
+					   <a class="news-letter" href="#">
+						 <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i> </i>Sign Up for Newsletter</label>
+					   </a>
+					 </div>
+				     <div class="register-bottom-grid">
+						    <h3>LOGIN INFORMATION</h3>
+							 <div class="wow fadeInLeft" data-wow-delay="0.4s">
+								<span>Password<label>*</label></span>
+								<input type="password" name="password">
+							 </div>
+							 <div class="wow fadeInRight" data-wow-delay="0.4s">
+								<span>Confirm Password<label>*</label></span>
+								<input type="password" name="pwd">
+							 </div>
+					 </div>
+					 <div clas="register-but">
+	
+					   <input type="submit" value="submit" style="background:#E24425;color: #FFF;font-size: 1.2em;padding: 0.6em 2em;transition: 0.5s all;-webkit-transition: 0.5s all;-moz-transition: 0.5s all;-o-transition: 0.5s all;display: inline-block;text-transform: uppercase;border:none;outline:none;">
+					   <div class="clearfix"> </div>
+					    
+					 </div>
+				</form>
+				<div class="clearfix"> </div>
+				
+		   </div>
+	     </div>
+	    </div>
+{% endblock body1 %}
+
+

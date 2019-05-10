@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+<title>{% block title %} order {% endblock %}</title>
+{% block link %}
+
+<script src="/static/js/jquery.carouFredSel-6.1.0-packed.js"></script>
+<script src="/static/js/tms-0.4.1.js"></script>
+<script>
+ $(window).load(function(){
+      $('.slider')._TMS({
+              show:0,
+              pauseOnHover:false,
+              prevBu:'.prev',
+              nextBu:'.next',
+              playBu:false,
+              duration:800,
+              preset:'fade', 
+              pagination:true,//'.pagination',true,'<ul></ul>'
+              pagNums:false,
+              slideshow:8000,
+              numStatus:false,
+              banners:false,
+          waitBannerAnimation:false,
+        progressBar:false
+      })  
+      });
+      
+     $(window).load (
+    function(){$('.carousel1').carouFredSel({auto: false,prev: '.prev',next: '.next', width: 960, items: {
+      visible : {min: 1,
+       max: 4
+},
+height: 'auto',
+ width: 240,
+
+    }, responsive: false, 
+    
+    scroll: 1, 
+    
+    mousewheel: false,
+    
+    swipe: {onMouse: false, onTouch: false}});
+    
+    
+    });      
+
+     </script>
+<script src="/static/js/jquery.easydropdown.js"></script>
+
+{% endblock link %}
+{% block body1 %}
+<div class="order-section-page">
+		<div class="ordering-form">
+			<div class="container">
+				{% if error %}
+					<div  style=" margin: 10px 0;background: #FAE4E4;border: 1px solid #DD6F6F;-moz-border-radius: 2px; -webkit-border-radius: 2px;padding: 4px; font-size: 13px;">
+					<strong>Errror : </strong> {{error}}
+					</div>
+				{% endif %}  
+			<form action="{% url 'orderapp:orders' %}" method="post">
+				
+				{% csrf_token %}
+			<div class="order-form-head text-center wow bounceInLeft" data-wow-delay="0.4s">
+						<h3>Restaurant Order Form</h3>
+						<p>Ordering Food Was Never So Simple !!!!!!</p>
+					</div>
+				<div class="col-md-6 order-form-grids">
+					
+					<div class="order-form-grid  wow fadeInLeft" data-wow-delay="0.4s">
+						<h5>Order Information</h5>
+								<span>Type of Order</span>
+								 <div class="dropdown-button">  
+						
+            			<select class="dropdown" tabindex="9" data-settings='{"wrapperClass":"flat"}' name="type1">
+							{% for i in ord %}
+						<option >{{i.order_type}}</option>
+							{% endfor %}
+						</select>
+					 
+					</div>
+		              <span>Restaurant Location</span>
+					   <div class="dropdown-button wow">           			
+            			<select class="dropdown" tabindex="9" data-settings='{"wrapperClass":"flat"}' name="loca">
+							{% for i in restaurant %}
+            			<option >{{i.location}}</option>	
+						{% endfor %}
+					  </select> 
+					</div>
+					<span>Location name</span>
+								 <div class="dropdown-button">           			
+            			<select class="dropdown" tabindex="9" data-settings='{"wrapperClass":"flat"}' name="city_name">
+							{% for i in city %}
+            			<option >{{i.city_name}}</option>	
+						{% endfor %}
+					  </select>
+					</div>
+					<span>cuisine-name</span>
+					   <div class="dropdown-button">           			
+            			<select class="dropdown" tabindex="9" data-settings='{"wrapperClass":"flat"}' name="rname">
+							{% for i in restaurant %}
+            			<option >{{i.rname}}</option>	
+						{% endfor %}
+					  </select> 
+					</div>
+				
+					<div class="wow swing animated" data-wow-delay= "0.4s">
+					<input type="submit" value="order now" style="	display: block;padding: 0.5em 1.5em;font-size: 16px;text-transform: uppercase;font-weight: 700;border:none;background:#5BBD50;color:#fff;margin: 1em 0 0 8em;">
+					</div>
+					</div>
+				</div>
+				<div class="col-md-6 ordering-image wow bounceIn" data-wow-delay="0.4s">
+					<img src="/static/images/order.jpg" class="img-responsive" alt="" />
+				</div>
+			</div>
+			
+		</form>
+		</div>
+		
+
+
+{% endblock body1 %}
